@@ -51,7 +51,22 @@ namespace LYA1_Lexico2
                             estado = 2;
                         else if (c=='=')
                             estado = 8;
-                        
+                        else if(c==';')
+                            estado=10;
+                        else if(c=='&')
+                            estado = 11;
+                        else if (c=='|')
+                            estado = 12;
+                        else if (c=='!')
+                            estado = 13;
+                        else if (c=='>'||c=='<')
+                            estado = 16;
+                        else if (c=='<')
+                            estado = 17;
+                        else if (c=='+')
+                            estado = 19;
+                        else if (c=='-')
+                            estado = 20;
                         else
                             estado = 27;
                         break;
@@ -103,39 +118,85 @@ namespace LYA1_Lexico2
                         if (!char.IsDigit(c))
                             estado = F;
                         break;
+                        
                     case 8:
                         setClasificacion(Tipos.OperadorAsignacion);
                         if(c=='=')
                             estado=9;
                         else 
-                        estado = F;
+                            estado = F;
                         break;
                     case 9:
+                            setClasificacion(Tipos.OperadorRelacional);
+                            estado = F;
                         break;
                     case 10:
+                        setClasificacion(Tipos.finSentencia);
+                        estado = F;
                         break;
+                        
                     case 11:
+                        setClasificacion(Tipos.Caracter);
+                        if(c=='&')
+                            estado=14;
+                        else
+                            estado = F;
                         break;
                     case 12:
+                        setClasificacion(Tipos.Caracter);
+                        if(c=='|')
+                            estado=14;
+                        else
+                            estado = F;
                         break;
                     case 13:
+                        setClasificacion(Tipos.OperadorLogico);
+                        if(c=='='){
+                            estado=15;
+                        }
+                        else
+                            estado = F;
                         break;
                     case 14:
+                        setClasificacion(Tipos.OperadorLogico);
+                        estado = F;
                         break;
                     case 15:
+                        setClasificacion(Tipos.OperadorRelacional);
+                        estado = F;
                         break;
+                        
                     case 16:
+                        setClasificacion(Tipos.OperadorRelacional);
+                        if(c=='=')
+                        {
+                            estado=18;
+                        }
                         break;
                     case 17:
+                        setClasificacion(Tipos.OperadorRelacional);
+                        if(c=='='||c=='>')
+                        {
+                            estado=18;
+                        }
+                        else
+                            estado=F;
                         break;
                     case 18:
+                        estado = F;
                         break;
                     case 19:
+                        setClasificacion(Tipos.OperadorTermino);
+                        if(c=='+'||c=='=')
+                            estado=21;
+                        else
+                        estado=F;
                         break;
                     case 20:
                         break;
                     case 21:
                         break;
+                        /*
                     case 22:
                         break;
                     case 23:
@@ -146,6 +207,7 @@ namespace LYA1_Lexico2
                         break;
                     case 26:
                         break;
+                        */
                     case 27:
                         setClasificacion(Tipos.Caracter);
                         estado = F;
