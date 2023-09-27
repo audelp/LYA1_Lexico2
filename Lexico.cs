@@ -67,6 +67,12 @@ namespace LYA1_Lexico2
                             estado = 19;
                         else if (c=='-')
                             estado = 20;
+                        else if (c=='*'||c=='/'||c=='%')
+                            estado = 22;
+                        else if (c=='?')
+                            estado = 24;
+                        else if (c=='\"')
+                            estado = 25;
                         else
                             estado = 27;
                         break;
@@ -193,21 +199,44 @@ namespace LYA1_Lexico2
                         estado=F;
                         break;
                     case 20:
+                        setClasificacion(Tipos.OperadorTermino);
+                        if(c=='-'||c=='=')
+                            estado=21;
+                        else
+                        estado=F;
                         break;
                     case 21:
+                        setClasificacion(Tipos.OperadorIncrementoTermino); 
+                        estado=F;
                         break;
-                        /*
                     case 22:
+                        setClasificacion(Tipos.OperadorFactor); 
+                        if(c=='=')
+                            estado=23;
+                        else
+                            estado=F;
                         break;
                     case 23:
+                        setClasificacion(Tipos.OperadorIncrementofactor);
+                        estado=F;
                         break;
                     case 24:
+                        setClasificacion(Tipos.OperadorTernario);
+                        estado=F;
                         break;
                     case 25:
+                        setClasificacion(Tipos.Cadena);
+                        if(c!='\"')
+                            estado=25;
+                        if(archivo.EndOfStream)
+                            estado=E;
+                        else
+                            estado=26;
                         break;
                     case 26:
-                        break;
-                        */
+                        setClasificacion(Tipos.Cadena);
+                        estado=F;
+                        break;   
                     case 27:
                         setClasificacion(Tipos.Caracter);
                         estado = F;
