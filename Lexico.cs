@@ -59,10 +59,10 @@ namespace LYA1_Lexico2
                             estado = 12;
                         else if (c=='!')
                             estado = 13;
-                        else if (c=='<'||c=='>')
-                            estado = 16;
                         else if (c=='<')
                             estado = 17;
+                        else if (c=='<'||c=='>')
+                            estado = 16;
                         else if (c=='+')
                             estado = 19;
                         else if (c=='-')
@@ -182,10 +182,9 @@ namespace LYA1_Lexico2
                         break;
                     case 17:
                         setClasificacion(Tipos.OperadorRelacional);
-                        if(c=='='||c=='>')
-                        {
+                        if(c=='>'||c=='=')
                             estado=18;
-                        }
+                        
                         else
                             estado=F;
                         break;

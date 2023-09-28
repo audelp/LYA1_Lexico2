@@ -11,8 +11,7 @@ x26 = Identificador
 != = OperadorRelacional
 < = OperadorRelacional
 < = OperadorRelacional
-< = OperadorRelacional
-> = OperadorRelacional
+<> = OperadorRelacional
 > = OperadorRelacional
 > = OperadorRelacional
 >= = OperadorRelacional
