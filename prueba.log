@@ -9,7 +9,12 @@ x26 = Identificador
 | = Caracter
 ! = OperadorLogico
 != = OperadorRelacional
-<<<>>>
+< = OperadorRelacional
+< = OperadorRelacional
+< = OperadorRelacional
+> = OperadorRelacional
+> = OperadorRelacional
+> = OperadorRelacional
 >= = OperadorRelacional
 <= = OperadorRelacional
 ++ = OperadorIncrementoTermino
@@ -26,11 +31,7 @@ x26 = Identificador
 %= = OperadorIncrementofactor
 ? = OperadorTernario
 "" = Cadena
-"H = Cadena
-ola = Identificador
-mundo1 = Identificador
-"
- = Cadena
+"Hola mundo" = Cadena
 { = Caracter
 } = Caracter
-" = Cadena
+"￿ = Cadena

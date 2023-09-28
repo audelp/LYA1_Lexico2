@@ -59,7 +59,7 @@ namespace LYA1_Lexico2
                             estado = 12;
                         else if (c=='!')
                             estado = 13;
-                        else if (c=='>'||c=='<')
+                        else if (c=='<'||c=='>')
                             estado = 16;
                         else if (c=='<')
                             estado = 17;
@@ -175,9 +175,10 @@ namespace LYA1_Lexico2
                     case 16:
                         setClasificacion(Tipos.OperadorRelacional);
                         if(c=='=')
-                        {
                             estado=18;
-                        }
+                        else
+                            estado=F;
+                        
                         break;
                     case 17:
                         setClasificacion(Tipos.OperadorRelacional);
@@ -226,8 +227,14 @@ namespace LYA1_Lexico2
                         break;
                     case 25:
                         setClasificacion(Tipos.Cadena);
-                        if(c!='\"')
-                            estado=25;
+                        while ((c = (char)archivo.Peek()) != '\"')
+                        {
+
+                            buffer += c;
+                            archivo.Read();
+                            if(archivo.EndOfStream)
+                                break;
+                        }
                         if(archivo.EndOfStream)
                             estado=E;
                         else
